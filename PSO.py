@@ -22,7 +22,7 @@ class PSO(object):
         self.max_br_iteracija=500
         self.c1= 0.8                 # Preporucena vrijednost 0,7 ili 0,8
         self.c2= 0.8                 # Slucajan broj iz opsega [0,Cmax], Cmax- 1,42 ili 1,62
-        self.c3= 1.62               # Slucajan broj iz opsega [0,Cmax], Cmax- 1,42 ili 1,62
+        self.c3= 1.62                # Slucajan broj iz opsega [0,Cmax], Cmax- 1,42 ili 1,62
         self.K=5                     # Broj informanata
         self.cestice = []            # Niz cestica
         self.informanti= []          # Niz informanata
@@ -43,7 +43,7 @@ class PSO(object):
             a=random.randint(0,self.velicina_roja-1)
             self.informanti.append(a)
 
-    def postavi_funkciju(self,f):   # Dodavanje fucnkcije algoritmu
+    def postavi_funkciju(self,f):   # Dodavanje funkcije algoritmu
         self.funkcija=f
 
 
@@ -60,13 +60,13 @@ class PSO(object):
                     inf = random.randint(0,self.velicina_roja-1) # Generisanje 5 informanata
 
                 j=0
-                najbolji_informant=self.informanti[0]    # ovde idem koz petlju i trazim najmanjeg infroamnta tj njegovu poziciju unutar prostora
+                najbolji_informant=self.informanti[0]    # ovde idem koz petlju i trazim najmanjeg infroamnta tj. njegovu poziciju unutar problemskog prostora
                 for info in self.informanti: # jer trazimo minimum
                     if self.funkcija(self.cestice[info].najbolja_pozicija) < self.funkcija(self.cestice[najbolji_informant].najbolja_pozicija):
                         najbolji_informant=info
 
                 informant = self.cestice[najbolji_informant]
-                # Racunamo brzinu sa novim pdoacima
+                # Racunamo brzinu sa novim podacima
 
 
                 v = self.c1 * np.array(c.brzina) + self.c2 * (np.array(c.najbolja_pozicija) - np.array(c.pozicija)) + self.c3 * (np.array(informant.najbolja_pozicija) - np.array(c.pozicija))
@@ -84,7 +84,7 @@ class PSO(object):
                     self.brojac= self.brojac+ 1
 
 
-                if  (self.funkcija(c.pozicija) + self.M * self.delta_1 + self.M * self.delta_2) < self.funkcija(c.najbolja_pozicija):             # cestice i ukoliko je manja od tekuce azuriramo je
+                if  (self.funkcija(c.pozicija) + self.M * self.delta_1 + self.M * self.delta_2) < self.funkcija(c.najbolja_pozicija):  # cestice i ukoliko je manja od tekuce azuriramo je
                     c.najbolja_pozicija = c.pozicija
             i=i+1
 
@@ -131,6 +131,7 @@ def Ackley_s_function(koordinate): # f(0,0)=0
     y=koordinate[1]
     f=-20 * math.exp(-0.2*math.sqrt(0.5*(pow(x,2)+pow(y,2)))) - math.exp(0.5 *(math.cos(2*x*math.pi) +  math.cos(2*y*math.pi))) + math.e + 20
     return f
+
 def Eggholder_function(koordinate): # f(512, 404.2319)= - 959.6407
     x=koordinate[0]
     y=koordinate[1]
